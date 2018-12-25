@@ -48,7 +48,7 @@ void main() {
 	SDL_Init(SDL_INIT_VIDEO);
 	create_display(scale);
 	time = SDL_GetTicks();
-	while (framesRendered++ < 600) {
+	while (framesRendered++ < 60000) {
 		while (pixelIndex < (160 * 144)) {
 			pixels[pixelIndex++] = randomPixel();
 		}
@@ -64,7 +64,9 @@ void main() {
 		screenTexture = SDL_CreateTextureFromSurface(
 				dispRend,
 				origScreen);
+		SDL_FreeSurface(origScreen);
 		SDL_RenderCopy(dispRend, screenTexture, NULL, NULL);
+		SDL_DestroyTexture(screenTexture);
 		SDL_RenderPresent(dispRend);
 	}
 	time = SDL_GetTicks() - time;
