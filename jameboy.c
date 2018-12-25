@@ -13,6 +13,11 @@ int main() {
 	}
 	time = SDL_GetTicks() - time;
 	printf("%d frames rendered in %d ms.\n", framesRendered, time);
+	for (int r = 0; r < 500; r++) {
+		sendPixel(3);
+	}
+	lcdReset();
+	SDL_Delay(2000);
 	while (1) {
 		for (unsigned char p = 0; p < 4; p++) {
 			for (int r = 0; r < 8; r++) {

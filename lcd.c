@@ -32,6 +32,14 @@ void create_display(int scale) {
 	pixelColors[3] = (SDL_Color){ 0, 0, 0, 255 };
 	lcdPalette = SDL_AllocPalette(4);
 	SDL_SetPaletteColors(lcdPalette, pixelColors, 0, 4);
+	SDL_SetRenderDrawColor(
+			dispRend,
+			lcdPalette[0].colors->r,
+			lcdPalette[0].colors->g,
+			lcdPalette[0].colors->b,
+			lcdPalette[0].colors->a);
+	SDL_RenderClear(dispRend);
+	SDL_RenderPresent(dispRend);
 }
 
 static void updateScreen(unsigned char pixels[]) {
@@ -57,14 +65,24 @@ static void updateScreen(unsigned char pixels[]) {
 int sendPixel(unsigned char pixel) {
 	static unsigned char pixels[160 * 144];
 	static int pixelIndex = 0;
-	pixels[pixelIndex] = pixel;
-	if (++pixelIndex == (160 * 144)) {
-		updateScreen(pixels);
+	if (pixel > 3) {
 		pixelIndex = 0;
-		return 1;
-	} else {
 		return 0;
+	} else {
+		pixels[pixelIndex] = pixel;
+		if (++pixelIndex == (160 * 144)) {
+			updateScreen(pixels);
+			pixelIndex = 0;
+			return 1;
+		} else {
+			return 0;
+		}
 	}
 }
 
+void lcdReset(void) {
+	sendPixel(4);
+	SDL_RenderClear(dispRend);
+	SDL_RenderPresent(dispRend);
+}
 
