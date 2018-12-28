@@ -2,5 +2,6 @@
 #define PPU_H
 
 void ppuTestFunc();
+void ppuTick();
 
 #endif

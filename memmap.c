@@ -1,6 +1,6 @@
 static unsigned char memory[65536];
 
-unsigned char memmapRead(int addr) {
+unsigned char memmapRead(unsigned int addr) {
 	if (addr < 65536) {
 		return memory[addr];
 	} else {
@@ -8,7 +8,7 @@ unsigned char memmapRead(int addr) {
 	}
 }
 
-void memmapWrite(int addr, unsigned char byte) {
+void memmapWrite(unsigned int addr, unsigned char byte) {
 	if (addr < 65536) {
 		memory[addr] = byte;
 	}

@@ -1,7 +1,7 @@
 #ifndef MEMMAP_H
 #define MEMMAP_H
 
-unsigned char memmapRead(int addr);
-void memmapWrite(int addr, unsigned char byte);
+unsigned char memmapRead(unsigned int addr);
+void memmapWrite(unsigned int addr, unsigned char byte);
 
 #endif
