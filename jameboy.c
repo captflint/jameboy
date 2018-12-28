@@ -1,4 +1,6 @@
 #include "lcd.h"
+#include "memmap.h"
+#include "ppu.h"
 
 int main() {
 	int scale = 4;
@@ -18,6 +20,11 @@ int main() {
 	}
 	lcdReset();
 	SDL_Delay(2000);
+	for (int p = 3; p >= 0; p--) {
+		memmapWrite(1337, p);
+		ppuTestFunc();
+		SDL_Delay(2000);
+	}
 	while (1) {
 		for (unsigned char p = 0; p < 4; p++) {
 			for (int r = 0; r < 8; r++) {
