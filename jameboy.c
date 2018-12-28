@@ -1,4 +1,4 @@
-#include "lcd.c"
+#include "lcd.h"
 
 int main() {
 	int scale = 4;

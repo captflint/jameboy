@@ -1,12 +1,10 @@
-#include <SDL2/SDL.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "lcd.h"
 
 static SDL_Window *lcddisp;
 static SDL_Renderer *dispRend;
 static SDL_Palette *lcdPalette;
 
-static unsigned char randomPixel() {
+unsigned char randomPixel() {
 	long int ri;
 	unsigned char rpixel;
 	ri = random();
